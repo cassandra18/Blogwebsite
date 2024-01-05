@@ -30,14 +30,14 @@ const postSchema = new Schema({
         type: [String], //Array of tags for categorization
         required: true
     },
-    likes: [Likes],
+    likes: [Likes.schema],
     ratings: [
         {
             user: Schema.Types.ObjectId,
             rating: Number //Rtating given by the user
         }
     ],
-    comments: [Comments]
+    comments: [Comments.schema]
 });
 
 
