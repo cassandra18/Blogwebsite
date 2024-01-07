@@ -22,6 +22,7 @@ app.use(express.json());
 
 app.use('/api/blogs', require('./routes/postRoutes'));
 app.use('/api/admin', require('./routes/adminRoutes'));
+app.use('/api/user', require('./routes/userRoutes'));
 
 
 app.use(errorHandler);
