@@ -13,12 +13,23 @@ const userController =  {
             throw new Error('All fields are required!');
         };
 
-        const newUser = new User({
+        const newUser = await User.create({
             username, email, password
         });
 
-        const savedUser = await newUser.save();
-        res.status(201).json(savedUser);
+        if(user) {
+            res.status(201).json({
+                _id: newUser.id,
+                username: newUser.username,
+                email: newUser.email,
+                password: newUser.password
+            })
+
+
+        } else {
+            res.status(400);
+            throw new Error('Invalid data');
+        };
 
     })
 };

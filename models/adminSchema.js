@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
+//create an adminSchema, an instance of the Schema using the 'new' Keyword
 const adminSchema = new Schema({
-    _id: {
-        type: Schema.Types.ObjectId
-    },
     username: {
         type: String,
         required: true
@@ -17,7 +16,6 @@ const adminSchema = new Schema({
     password: {
         type: String,
         required: true,
-        unique: true
     }
 }, {timestamps: true}
 );

@@ -4,9 +4,6 @@ const Schema = mongoose.Schema;
 const Comments = require('./commentsSchema');
 
 const userSchema = new Schema({
-    _id: {
-        type: Schema.Types.ObjectId
-    },
     username: {
         type: String,
         required: true,
@@ -20,9 +17,8 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
-        unique: true,
     },
-    comments: [Comments]
+    comments: [Comments.schema]
 
 },
 {
