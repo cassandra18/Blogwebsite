@@ -6,11 +6,6 @@ const User = require('../models/userSchema');
 const { hash } = require('bcryptjs');
 const { generateToken } = require('./adminController');
 
-
-const generateToken = (id) => {
-    return (jwt.sign({ id }, process.env.JWT_KEY, { expiresIn: '30min'} ));
-}
-
 const userController =  {
 
     createUser:  asyncHandler(async(req, res) => {
@@ -40,7 +35,7 @@ const userController =  {
             username, email, password: hashedPassword
         });
 
-        if(newUser && (crypt.compare(password, hashedPassword))) {
+        if(newUser) {
             res.status(201).json({
                 _id: newUser.id,
                 username: newUser.username,
@@ -54,10 +49,31 @@ const userController =  {
             throw new Error('Invalid data');
         };
 
-    })
+    }),
+
+    loginUser: asyncHandler(async (req, res) => {
+        const { email, password } = req.body;
+
+        const user = await User.findOne({ email });
+
+        if(user && (await bcrypt.compare(password, user.password))) {
+            res.json({
+
+                _id: user.id,
+                username: user.username,
+                email: user.email,
+                token: generateToken(user._id)
+            })
+        }
+        else {
+            res.status(400)
+            throw new Error('Invalid credentials')
+        }
+    }),
+
 };
 
 
 
 
-module.exports = userController;
+module.exports = { userController, generateToken };

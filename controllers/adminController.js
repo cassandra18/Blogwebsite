@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 const Admin = require('../models/adminSchema');
+const expressAsyncHandler = require('express-async-handler');
 
 
 const generateToken = (id) => {
@@ -76,8 +77,11 @@ const adminController =  {
         }
     }),
 
+    getMe: asyncHandler(async(res,req) => {
+        res.status(201).json(req.user);
+    })
 
-    
+
 };
 
 
