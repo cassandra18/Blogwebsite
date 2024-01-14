@@ -71,43 +71,12 @@ const userController =  {
             throw new Error('Invalid credentials')
         }
     }),
+     
 
+    getMe: asyncHandler(async(res,req) => {
+        res.status(201).json(req.admin);
+    })
 
-     // Fetch all blog posts
-     getAllBlogPosts: asyncHandler(async (req, res) => {
-        const blogPosts = await Post.find({});
-        res.status(200).json(blogPosts);
-    }),
-
-    // Fetch a specific blog post by ID
-    getBlogPostById: asyncHandler(async (req, res) => {
-        const postId = req.params.postId;
-
-        const blogPost = await Post.findById(postId);
-
-        if (!blogPost) {
-            res.status(404);
-            throw new Error('Blog post not found');
-        }
-
-        res.status(200).json(blogPost);
-    }),
-
-    // Fetch blog posts by a specific criteria (e.g., author)
-    getBlogPostsByCriteria: asyncHandler(async (req, res) => {
-        const authorId = req.params.authorId;
-
-        const blogPosts = await Post.find({ author: authorId });
-
-        if (!blogPosts || blogPosts.length === 0) {
-            res.status(404);
-            throw new Error('No blog posts found for the specified criteria');
-        }
-
-        res.status(200).json(blogPosts);
-    }),
-
-    
 };
 
 

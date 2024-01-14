@@ -12,12 +12,12 @@ const Post = require("../models/blogPostSchema");
  const storage = multer.diskStorage({
 
   //set the 'uploads/' directory as the destination directory
-  distination: (req, file, cb) => {
+  destination: (req, file, cb) => {
     cb(null, 'upload/');
   },
 
   // Generate a unique filename for each uploaded file. path.extanme() is used to get the extansion of the original file.
-  fileName: (req, file, cb) => {
+  filename: (req, file, cb) => {
     const uniqueFile = `${uuidv4}${path.extname(file.originalName)}`;
     cb(null, uniqueFile);
   },
@@ -55,9 +55,8 @@ const postController = {
 
 
     uploadMultiple(req, res, async (err) => {
-      if (err instanceof multer.MulterError) {
-        res.status(400);
-        throw new Error('Error uploading images');
+      if (err){
+        res.status(400).json({ error: 'Error uploading images' });
       }
     });
 

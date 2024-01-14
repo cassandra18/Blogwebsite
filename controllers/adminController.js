@@ -78,7 +78,7 @@ const adminController =  {
     }),
 
     getMe: asyncHandler(async(res,req) => {
-        res.status(201).json(req.user);
+        res.status(201).json(req.admin);
     })
 
 
