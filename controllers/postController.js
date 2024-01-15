@@ -1,11 +1,10 @@
 const path = require('path');
 const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
-
+const fs = require('fs');
 const asyncHandler = require("express-async-handler");
 
 const Post = require("../models/blogPostSchema");
-
 
 
  // configure the multer storage engine. It specifies that uploaded files should be stored in 'diskStorage' disk. 
@@ -13,22 +12,29 @@ const Post = require("../models/blogPostSchema");
 
   //set the 'uploads/' directory as the destination directory
   destination: (req, file, cb) => {
-    cb(null, 'upload/');
+    const uploadDir = '/uploads';
+
+    if(!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir);
+    }
+    cb(null, uploadDir);
   },
 
   // Generate a unique filename for each uploaded file. path.extanme() is used to get the extansion of the original file.
   filename: (req, file, cb) => {
-    const uniqueFile = `${uuidv4}${path.extname(file.originalName)}`;
+    const uniqueFile = `${uuidv4()}${path.extname(file.originalname)}`;
     cb(null, uniqueFile);
   },
 
-})
+});
 
 
+
+//Handle multiple file uploads
 const uploadMultiple = multer({
-  storage: storage,
+  storage: storage, //the uploaded images will be stored in the diskStorage in the server
   limits: { files: 5 }, //limits the number of files to be uploaded to 5
-}).array('images', 5) //images is the field name in the form for multiple file
+}).array('images', 5); //images is the field name in the form for multiple file
 
 
 
@@ -38,10 +44,10 @@ const postController = {
   //Create a method from the parent object. This method is used to create a blog post.
   createPost: asyncHandler(async (req, res) => {
     // Destructure the parts of the blog post from the request body.
-    const { title, content, author, tags } = req.body;
+    const { title, content, authorId, authorName, category, tags } = req.body;
 
     //Check if all the field are filled in.
-    if (!title || !content || !author || !tags) {
+    if (!title || !content || !authorId || !authorName || !category || !tags) {
       res.status(400);
       throw new Error("All fields should be filled!");
     }
@@ -60,12 +66,12 @@ const postController = {
       }
     });
 
-    const imagePaths = req.files.map((file) => `uploads/${file.filename}`);
+    const imagePaths = req.files ? req.files.map((file) => `uploads/${file.fileName}`) : [];
 
 
     // Create a new blog post
     const newPost = await Post.create({
-        title, content, author, tags, imagePaths
+        title, content, authorId, authorName, category, tags, imagePaths
     });
 
     if (newPost) {
@@ -73,7 +79,9 @@ const postController = {
         _id: newPost.id,
         title: newPost.title,
         content: newPost.content,
-        author: newPost.author,
+        authorId: newPost.authorId,
+        authorName: newPost.authorName,
+        category: newPost.category,
         tags: newPost.tags,
         imagePaths: newPost.imagePaths,
       });
@@ -91,7 +99,7 @@ const postController = {
   //Route handler for handling multiple images
   uploadMultipleImages: (req, res) => {
     //Access multiple files through req.file
-    const imagePaths = req.files.map(file => `uploads/${file.filename}`);
+    const imagePaths = req.files.map(file => `uploads/${file.fileName}`);
     res.json({ imagePaths })
   },
 

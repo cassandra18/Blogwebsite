@@ -4,19 +4,15 @@ const Schema = mongoose.Schema;
 const Comments = require('./commentsSchema');
 const Likes = require('./likesSchema');
 
-
-
+    
 const postSchema = new Schema({
-    _id: {
-        type: Schema.Types.ObjectId
-    },
     title: {
         type: String,
         required: true
     },
     imageUrl: {
         type: String,
-        required: true
+      //required: true
     },
     category: {
         type: String,
@@ -26,9 +22,13 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
-    author: {
+    authorId: {
         type: Schema.Types.ObjectId,
         ref: 'Admin'
+    },
+    authorName: {
+        type: String,
+        required: true
     },
     createdAt: {
         type: Date,
@@ -38,14 +38,31 @@ const postSchema = new Schema({
         type: [String], //Array of tags for categorization
         required: true
     },
-    likes: [Likes.schema],
+    likes: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }
+    ],
     ratings: [
         {
             user: Schema.Types.ObjectId,
-            rating: Number //Rtating given by the user
+            ref: 'User',
+            type: Number,
+            value: {
+                default: 0,
+                min: 0,
+                max: 5
+            }
+           
         }
     ],
-    comments: [Comments.schema]
+    comments: [{
+        author: {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        text: String,
+    }]
 });
 
 

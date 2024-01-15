@@ -45,6 +45,7 @@ const adminController =  {
                 _id: newAdmin.id,
                 username: newAdmin.username,
                 email: newAdmin.email,
+                password: newAdmin.password,
                 token: generateToken(newAdmin._id)
             })
     
@@ -77,7 +78,7 @@ const adminController =  {
         }
     }),
 
-    getMe: asyncHandler(async(res,req) => {
+    getMe: asyncHandler(async(req,res) => {
         res.status(201).json(req.admin);
     })
 

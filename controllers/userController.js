@@ -21,7 +21,7 @@ const userController =  {
 
 
 
-        const userExist = await User.findOne(email);
+        const userExist = await User.findOne({ email });
 
         if(userExist) {
             res.status(400);
@@ -73,8 +73,8 @@ const userController =  {
     }),
      
 
-    getMe: asyncHandler(async(res,req) => {
-        res.status(201).json(req.admin);
+    getMe: asyncHandler(async(req,res) => {
+        res.status(201).json(req.user);
     })
 
 };
