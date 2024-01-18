@@ -1,0 +1,47 @@
+Primary colors: Black and white
+Secondary colors: Orange
+
+******PAGES*****
+
+**HOME PAGE**
+**BLOGS PAGE**
+**SINGLE BLOGS PAGE**
+**CONTACT PAGE**
+**SIGN UP FORM**
+**ABOUT PAGE**
+
+
+*******Fonts****
+Logo: Sedan SC
+Links: Open Sans
+Headings: Content
+Body: Open Sans
+
+
+******UX/UI****
+Buttons: Orange
+        : padding
+        : color, white
+        : border, none
+        : cursor, pointer
+        : 
+        : Header button does not have a shadow but the rest do.
+        : border-radius is 4px
+
+Header Links: When hovered over they turn orange and its underlined when clicked
+
+
+
+****CSS STYLES****
+BODY: Background color, white
+    : FOnt, OPen sans
+    : margin. 0 auto
+    :root {
+        --primary-color: black and white
+        --secondary-color: orange
+    }
+
+BANNER: background color, BLack
+
+HEADER: Black
+
