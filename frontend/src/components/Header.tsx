@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 //Header takes no props and impliments arrow function
 const Header: React.FC = () => {
   return (
-    <header className="bg-black text-white flex items-center h-20">
-      <div className="container flex mx-auto w-full">
-        <nav className="w-full flex items-center gap-20">
-          <h1 className="text-lg  md:text-2xl lg:text-3xl mr-auto ">
+    <header className="h-24 w-screen bg-black flex items-center text-white">
+      <div className="">
+        <nav className="flex w-1/2 md:w-full gap-40 items-center">
+          <h1 className="font-bold mx-16 ">
             <Link to="/">Blog<span className="text-orange-500">Web</span></Link>
           </h1>
-          <ul className="flex w-full ml-20 gap-10">
+          <ul className="flex items-center gap-14">
             <li>
               <Link to="/">Home</Link>
             </li>
@@ -25,8 +25,8 @@ const Header: React.FC = () => {
               <Link to="/contact">Contact</Link>
             </li>
           </ul>
-          <Link to="/log-in">
-              <button className="bg-orange-500  mr-auto text-black px-4 py-2 rounded-md">
+          <Link to="/log-in" className="bg-orange-500 text-black px-4 py-2 rounded-md">
+              <button >
                 login
               </button>
             </Link>
