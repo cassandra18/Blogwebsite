@@ -6,10 +6,8 @@ const LoginPage: React.FC =() => {
     return (
         <div>
             <Header/>
-        <div>
-            <h2>Login Page</h2>
+            <h2>Create Account</h2>
             <LoginForm/>
-        </div>
         </div>
     )
 };
