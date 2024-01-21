@@ -1,11 +1,12 @@
 import React from "react";
 import Header from "../components/Header";
+import HeroSection from "../components/HeroSection";
 
 const HomePage: React.FC = () => {
     return (
         <>
             <Header />
-            <h1>Home Page</h1>
+            <HeroSection/>
         </>
     )
 };
