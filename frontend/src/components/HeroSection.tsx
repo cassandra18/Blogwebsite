@@ -5,7 +5,7 @@ import { GoArrowRight } from "react-icons/go";
 const HeroSection: React.FC = () => {
   return (
     <>
-    <div className="bg-black flex  w-full h-96 ">
+    <div className="bg-black flex  w-full h-full ">
         <div className="flex flex-row justify-center">
       <h1 className="font-Content-Bold text-white text-2xl">
         Welcome to Our Blog

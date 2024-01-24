@@ -4,10 +4,9 @@ import HeroSection from "../components/HeroSection";
 
 const HomePage: React.FC = () => {
     return (
-        <>
-            <Header />
+        <div className="h-full">
             <HeroSection/>
-        </>
+        </div>
     )
 };
 
