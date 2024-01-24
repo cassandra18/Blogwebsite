@@ -25,7 +25,7 @@ const Header: React.FC = () => {
               <Link to="/contact">Contact</Link>
             </li>
           </ul>
-          <Link to="/log-in" className="bg-orange-500 text-black px-4 py-2 rounded-md">
+          <Link to="/login" className="bg-orange-500 text-black px-4 py-2 rounded-md">
               <button >
                 login
               </button>

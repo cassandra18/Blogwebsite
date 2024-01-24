@@ -7,6 +7,7 @@
   src: url(https://fonts.cdnfonts.com/css/sedan-sc);
 }
 
+
 @font-face {
   font-family: 'Content-Bold';
   src: url('./fonts/Content-Bold.woff') format('woff');
@@ -19,4 +20,17 @@ h1 {
 nav ul{
   font-family: 'Open Sans', serif;
   font-size: 1.2rem;
+}
+@layer base {
+  #root {
+    @apply h-full;
+  }
+
+  html,body {
+    @apply h-full;
+    @apply select-none;
+    @apply bg-transparent;
+    @apply font-mono;
+    @apply overflow-hidden;
+  }
 }

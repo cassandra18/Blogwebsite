@@ -1,18 +1,23 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import LoginForm from "./components/SignInForm";
-
-//Im declaring a constant variable 'App' which is a functional component.
-// App takes no props and its implimented as an arrow function
+import { Routes, Route } from "react-router-dom";
+import LoginPage from "./pages/loginPge";
+import AllBLogs from "./pages/AllBLogs";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Header from "./components/Header";
 const App: React.FC = () => {
-    return (
-    
-      <>
-        <HomePage/>
-        <LoginForm/>
-        <Outlet />
-      </>
+    return (    
+      <div className="h-full">
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/blogs" element={<AllBLogs />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </div>
       
     )
 };
