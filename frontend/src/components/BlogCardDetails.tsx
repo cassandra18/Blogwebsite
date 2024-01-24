@@ -17,7 +17,7 @@ const   BlogCardDetails: React.FC = () => {
     
     return (
         <div>
-            {blogData.mao((blog, index) => (
+            {blogData.map((blog, index) => (
                 <BlogCard key={index} blog={blog} />
             ))}
         </div>
