@@ -13,13 +13,17 @@
   src: url('./fonts/Content-Bold.woff') format('woff');
   font-weight: bold;
 }
-h1 {
+nav h1 {
   font-family: 'Sedan SC', serif;
   font-size: 2rem ;
 }
 nav ul{
   font-family: 'Open Sans', serif;
   font-size: 1.2rem;
+}
+h1 {
+  font-family: 'Content-bold', serif;
+  font-size: 4rem;
 }
 @layer base {
   #root {
@@ -33,4 +37,15 @@ nav ul{
     @apply font-mono;
     @apply overflow-hidden;
   }
+}
+
+.active {
+  @apply text-orange-500 underline underline-offset-4
+}
+.bg-image {
+  background-image: url('./assets/_.jpeg');
+}
+
+p {
+  font-family: 'Open Sans', serif;
 }

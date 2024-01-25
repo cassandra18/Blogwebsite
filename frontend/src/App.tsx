@@ -1,10 +1,10 @@
 import React from "react";
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/homePage";
 import { Routes, Route } from "react-router-dom";
-import LoginPage from "./pages/loginPge";
-import AllBLogs from "./pages/AllBLogs";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
+import LoginPage from "./pages/loginPage";
+import AllBLogs from "./pages/allBlogs";
+import About from "./pages/about";
+import Contact from "./pages/contact";
 import Header from "./components/Header";
 const App: React.FC = () => {
     return (    
