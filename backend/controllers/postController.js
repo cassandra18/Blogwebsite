@@ -5,6 +5,7 @@ const fs = require('fs');
 const asyncHandler = require("express-async-handler");
 
 const Post = require("../models/blogPostSchema");
+const { response } = require('express');
 
 
  // configure the multer storage engine. It specifies that uploaded files should be stored in 'diskStorage' disk. 
@@ -44,10 +45,10 @@ const postController = {
   //Create a method from the parent object. This method is used to create a blog post.
   createPost: asyncHandler(async (req, res) => {
     // Destructure the parts of the blog post from the request body.
-    const { title, content, authorId, authorName, category, tags } = req.body;
+    const { title, content, imageUrl, authorId, authorName, category, tags } = req.body;
 
     //Check if all the field are filled in.
-    if (!title || !content || !authorId || !authorName || !category || !tags) {
+    if (!title || !content || !imageUrl || !authorId || !authorName || !category || !tags) {
       res.status(400);
       throw new Error("All fields should be filled!");
     }
@@ -68,16 +69,16 @@ const postController = {
 
     const imagePaths = req.files ? req.files.map((file) => `uploads/${file.fileName}`) : [];
 
-
     // Create a new blog post
     const newPost = await Post.create({
-        title, content, authorId, authorName, category, tags, imagePaths
+        title, content, authorId, imageUrl, authorName,category, tags, imagePaths
     });
 
     if (newPost) {
       res.status(201).json({
         _id: newPost.id,
         title: newPost.title,
+        imageUrl: newPost.imageUrl,
         content: newPost.content,
         authorId: newPost.authorId,
         authorName: newPost.authorName,
@@ -90,11 +91,21 @@ const postController = {
       res.status(400);
       throw new Error("Invalid data");
     }
-    
-    
   }),
 
+  getPosts: asyncHandler(async(req, res) => {
+    const posts = await Post.find().sort({ createdAt: -1 });
 
+    if (posts) {
+      res.status(200).json(posts);
+
+    } else {
+      res.status(500);
+      throw new Error('Internal server error')
+    }
+    
+  }),
+  
 
   //Route handler for handling multiple images
   uploadMultipleImages: (req, res) => {
@@ -102,6 +113,19 @@ const postController = {
     const imagePaths = req.files.map(file => `uploads/${file.fileName}`);
     res.json({ imagePaths })
   },
+
+  getPost: asyncHandler(async (req, res) => {
+    const postId = req.params.postId;
+
+    const post = await Post.findById(postId);
+    
+    if(post) {
+      res.status(200).json(post);
+    } else {
+      res.status(404);
+      throw new Error('Blog not found:', error);
+    }
+  })
 
 };
 

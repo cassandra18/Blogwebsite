@@ -1,15 +1,17 @@
 const express = require('express');
 require('colors');
-require('dotenv').config();
+const dotenv = require('dotenv').config();
 const errorHandler = require('./middleware/errorHandler');
 const connectDB = require('./config/db');
+const cors = require('cors');
+
 
 //connect to database
 connectDB();
 
 const port = process.env.PORT || 4000;
 const app = express();
-
+app.use(cors());
 //Middleware to parse incoming JSON requests used in API handle JSON  payloads.
 app.use(express.json());
 

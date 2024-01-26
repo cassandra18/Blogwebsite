@@ -60,9 +60,9 @@ const LoginForm: React.FC = () => {
 
   return (
     <div className="py-20 w-full  " >
-      <h1 className="py-10 px-10 ">Create Account</h1>
+      <h1 className="py-10 px-10 text-center ">Create Account</h1>
       {errorMessage && <div className="error-message">{errorMessage}</div>}
-      <form className="bg-white ml-10 shadow-md max-w-xs rounded px-8 pt-6 pb-8 mb-4">
+      <form className="bg-white shadow-md max-w-xl mx-auto rounded px-8 pt-6 pb-8 mb-4">
         <div>
           <label className="block text-black text-2xl mb-2" htmlFor="username">
             Username
@@ -113,7 +113,7 @@ const LoginForm: React.FC = () => {
           Submit
         </button>
         <h6 className="text-center">
-          Already have an account?
+          Already have an account? <br/>
           <Link to="/signin" className=" text-orange-500">
             Sign in
           </Link>
