@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 const Admin = require('../models/adminSchema');
-const expressAsyncHandler = require('express-async-handler');
+
 
 
 const generateToken = (id) => {

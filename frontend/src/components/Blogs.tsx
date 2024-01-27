@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
 
 interface Post {
   title: string;
@@ -38,24 +39,32 @@ const Blogs: React.FC = () => {
       <div>
         {posts ? (
           posts.map((post) => (
-            <div key={post._id}>
-              <div>
-                <img src={post.imageUrl} alt={post.title} className="" />
-              </div>
-              <div>
-                <Link to={`/post/${post._id}`}>
+            <div className="grid p-4 md:grid-cols-3 sm:grod-cols-2 grid-cols-1 gap-8">
+              <Link to="/post/:postId" key={post._id}>
+                <div>
+                  <img src={post.imageUrl} alt="image" className="" />
+                </div>
+
+                <div className="mt-4 mb-2 font-bold hover:text-orange-900 cursor-pointer">
                   <h3>{post.title}</h3>
-                </Link>
-              </div>
-              <div className="p-4">{post.content}</div>
-              <div>{post.authorName}</div>
-              <div className="bg-gray-100 px-4 py-2 text-sm text-gray-500">
-                {new Date(post.createdAt).toLocaleString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </div>
+                </div>
+
+                <div className="mb-4">{post.content}</div>
+
+                <div className="mb-2 text-sm text-gray-400">
+                  <FaUser className="inline-flex text-black items-center mr-2" />{" "}
+                  {post.authorName}
+                </div>
+
+                <div className="py-2 text-sm text-gray-400">
+                  Published:
+                  {new Date(post.createdAt).toLocaleString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </div>
+              </Link>
             </div>
           ))
         ) : (
