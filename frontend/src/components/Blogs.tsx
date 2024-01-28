@@ -9,6 +9,8 @@ interface Post {
   authorName: string;
   createdAt: Date;
   imageUrl: string;
+  comments: string;
+  ratings: number;
 }
 
 const Blogs: React.FC = () => {
@@ -51,7 +53,7 @@ const Blogs: React.FC = () => {
 
                 <div className="mb-4">{post.content}</div>
 
-                <div className="mb-2 text-sm text-gray-400">
+                <div className="mb-2 text-sm font-sans text-gray-400">
                   <FaUser className="inline-flex text-black items-center mr-2" />{" "}
                   {post.authorName}
                 </div>
@@ -64,6 +66,8 @@ const Blogs: React.FC = () => {
                     day: "numeric",
                   })}
                 </div>
+                <div>{ post.comments}</div>
+                <div>{ post.ratings}</div>
               </Link>
             </div>
           ))
