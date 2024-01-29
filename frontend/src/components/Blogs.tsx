@@ -38,23 +38,20 @@ const Blogs: React.FC = () => {
   return (
     <>
       {/* Blog Card section*/}
-      <div>
-        {posts ? (
-          posts.map((post) => (
-            <div className="grid p-4 md:grid-cols-3 sm:grod-cols-2 grid-cols-1 gap-8">
-              <Link to="/post/:postId" key={post._id}>
+      
+        <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
+          { posts ? ( posts.map((post) => (
+              <Link to="/post/:postId" key={post._id} className="p-5 shadow-lg rounded cursor-pointer">
                 <div>
-                  <img src={post.imageUrl} alt="image" className="" />
+                  <img src={post.imageUrl} alt="image" className="w-full" />
                 </div>
 
                 <div className="mt-4 mb-2 font-bold hover:text-orange-900 cursor-pointer">
                   <h3>{post.title}</h3>
                 </div>
 
-                <div className="mb-4">{post.content}</div>
-
                 <div className="mb-2 text-sm font-sans text-gray-400">
-                  <FaUser className="inline-flex text-black items-center mr-2" />{" "}
+                  <FaUser className="inline-flex text-black items-center mr-2" />
                   {post.authorName}
                 </div>
 
@@ -66,15 +63,13 @@ const Blogs: React.FC = () => {
                     day: "numeric",
                   })}
                 </div>
-                <div>{ post.comments}</div>
-                <div>{ post.ratings}</div>
               </Link>
-            </div>
-          ))
-        ) : (
-          <h1>No Posts Yet</h1>
-        )}
-      </div>
+            ))
+          ) : (
+            <h1>No Posts Yet</h1>
+          )}
+        </div>
+      
 
       {/*Category sectuon */}
       <div></div>
