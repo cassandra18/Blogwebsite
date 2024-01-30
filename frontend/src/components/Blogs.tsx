@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 
@@ -11,39 +11,33 @@ interface Post {
   imageUrl: string;
   comments: string;
   ratings: number;
+  category: string; 
 }
 
-const Blogs: React.FC = () => {
-  const [posts, setPosts] = useState<Post[] | null>([]); // posts is an array of objects
+interface BlogsProps {
+  posts: Post[] | null;
+  currentPage: number;
+  selectedCategory: string | null;
+  pageSize: number;
+}
 
-  //useEffect is used to connect a component to an external system. For this case, it connects us to a browser API
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:3000/api/post/get-posts"
-        );
+const Blogs: React.FC<BlogsProps> = ({posts, currentPage, selectedCategory, pageSize}) => {
+  const filteredPosts = (posts || [])
+  .filter((posts) => !selectedCategory || posts.category === selectedCategory)
+  .slice((currentPage -1) *pageSize, currentPage = pageSize);
 
-        const data = await response.json();
-        console.log(data);
-        setPosts(data); // the state of the blog post changes froman empty array to the fetched data
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-      }
-    };
+  console.log(filteredPosts);
 
-    fetchPosts();
-  }, []);
 
   return (
     <>
       {/* Blog Card section*/}
       
         <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
-          { posts ? ( posts.map((post) => (
-              <Link to="/post/:postId" key={post._id} className="p-5 shadow-lg rounded cursor-pointer">
+          { filteredPosts ? ( filteredPosts.map((post) => (
+              <Link to={`/post/${post._id}`} key={post._id} className="p-5 shadow-lg rounded cursor-pointer">
                 <div>
-                  <img src={post.imageUrl} alt="image" className="w-full" />
+                  <img src={post.imageUrl} alt="image" className="w-full  h-48 object-cover object-center" />
                 </div>
 
                 <div className="mt-4 mb-2 font-bold hover:text-orange-900 cursor-pointer">
@@ -69,12 +63,6 @@ const Blogs: React.FC = () => {
             <h1>No Posts Yet</h1>
           )}
         </div>
-      
-
-      {/*Category sectuon */}
-      <div></div>
-
-      {/*Pagination section */}
     </>
   );
 };

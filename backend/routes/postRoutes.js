@@ -14,7 +14,7 @@ router.route('/upload-image').post(authenticateToken, postController.uploadMulti
 router.route('/get-posts').get(postController.getPosts);
 
 //GEt post by id
-router.route('/:postId').get(postController.getPost);
+router.route('/:postId').get(postController.getPost).put(postController.updatePost);
 
 
 module.exports = router;

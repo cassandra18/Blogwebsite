@@ -125,6 +125,37 @@ const postController = {
       res.status(404);
       throw new Error('Blog not found:', error);
     }
+  }),
+
+  updatePost: asyncHandler(async (req, res) => {
+    const postId = req.params.postId;
+    const { title, content, imageUrl, category, tags, imagePaths } = req.body;
+
+    const updatedPost = await Post.findByIdAndUpdate(postId,
+      {title, content, imageUrl, category, tags, imagePaths},
+      { new: true } // To return the updated document
+      );
+    
+    if(updatedPost) {
+      res.status(200).json({
+        _id: updatedPost.id,
+        title: updatedPost.title,
+        imageUrl: updatedPost.imageUrl,
+        content: updatedPost.content,
+        authorId: updatedPost.authorId,
+        authorName: updatedPost.authorName,
+        category: updatedPost.category,
+        tags: updatedPost.tags,
+        imagePaths: updatedPost.imagePaths,
+        createdAt: updatedPost.createdAt,
+        updatedAt: updatedPost.updatedAt, // Include updatedAt if needed 
+    });
+    } else {
+      res.status(404);
+      throw new Error('Blog not found:', error);
+    }
+
+
   })
 
 };
