@@ -7,7 +7,7 @@ import LoginPage from "./pages/loginPage";
 import About from "./pages/about";
 import Contact from "./pages/contact";
 import HomePage from "./pages/homePage";
-import BlogPage from './pages/blogPage.tsx'
+import BlogPage from './pages/blogs.tsx'
 const router = createBrowserRouter([
   {
     path: "/",

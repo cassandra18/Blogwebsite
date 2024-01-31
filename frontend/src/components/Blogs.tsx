@@ -35,7 +35,7 @@ const Blogs: React.FC<BlogsProps> = ({posts, currentPage, selectedCategory, page
       
         <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
           { filteredPosts ? ( filteredPosts.map((post) => (
-              <Link to={`/post/${post._id}`} key={post._id} className="p-5 shadow-lg rounded cursor-pointer">
+              <Link to={`/post/${post._id}`} key={post._id} className="p-5 shadow-lg hover:scale-110 transition ease-in-out rounded duration-200 cursor-pointer">
                 <div>
                   <img src={post.imageUrl} alt="image" className="w-full  h-48 object-cover object-center" />
                 </div>
