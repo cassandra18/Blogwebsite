@@ -5,7 +5,7 @@ import { FaUser } from "react-icons/fa";
 interface Post {
   title: string;
   content: string;
-  _id: number;
+  _id: string;
   authorName: string;
   createdAt: Date;
   imageUrl: string;

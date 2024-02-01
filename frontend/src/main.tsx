@@ -8,6 +8,9 @@ import About from "./pages/about";
 import Contact from "./pages/contact";
 import HomePage from "./pages/homePage";
 import BlogPage from './pages/blogs.tsx'
+import SingleBlog from './components/SingleBlog.tsx'
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,6 +35,11 @@ const router = createBrowserRouter([
       {
         path: '/about',
         element: <About/>
+      },
+      {
+        path: '/post/:postId',
+        element: <SingleBlog/>,
+        loader: ({params}) => fetch(`http://localhost:3000/api/post/${params.postId}`)
       }
     ]
   },
