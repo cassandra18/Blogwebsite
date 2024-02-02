@@ -64,7 +64,7 @@ const LoginForm: React.FC = () => {
       {errorMessage && <div className="error-message">{errorMessage}</div>}
       <form className="bg-white shadow-md max-w-xl mx-auto rounded px-8 pt-6 pb-8 mb-4">
         <div>
-          <label className="block text-black text-2xl mb-2" htmlFor="username">
+          <label className="block text-black text-l mb-2" htmlFor="username">
             Username
           </label>
           <input
@@ -78,7 +78,7 @@ const LoginForm: React.FC = () => {
         </div>
         <br />
         <div>
-          <label className="block text-black text-2xl mb-2" htmlFor="email">
+          <label className="block text-black text-l mb-2" htmlFor="email">
             Email
           </label>
           <input
@@ -92,7 +92,7 @@ const LoginForm: React.FC = () => {
         </div>
         <br />
         <div>
-          <label className="block text-black text-2xl mb-2" htmlFor="password">
+          <label className="block text-black text-l mb-2" htmlFor="password">
             Password
           </label>
           <input

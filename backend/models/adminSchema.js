@@ -16,7 +16,14 @@ const adminSchema = new Schema({
     password: {
         type: String,
         required: true,
-    }
+    },
+    bio: {
+       type: String,
+       default: 'I am an author at BlogWeb' 
+    },
+    image: {
+        type: String
+    },
 }, {timestamps: true}
 );
 

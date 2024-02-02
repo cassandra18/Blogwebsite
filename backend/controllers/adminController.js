@@ -14,12 +14,12 @@ const adminController =  {
 
     createAdmin:  asyncHandler(async(req, res) => {
 
-        const { username, email, password } = req.body;
+        const { username, email, bio, image, password } = req.body;
         
         
         if(!username || !email || !password) {
             res.status(400);
-            throw new Error('All fields are required!');
+            throw new Error('Name, email and password fields are required!');
         };
 
 
@@ -36,7 +36,7 @@ const adminController =  {
 
         //create user
         const newAdmin =  await Admin.create({
-            username, email, password: hashedPassword
+            username, email, bio, image, password: hashedPassword
         });
 
         
@@ -45,6 +45,8 @@ const adminController =  {
                 _id: newAdmin.id,
                 username: newAdmin.username,
                 email: newAdmin.email,
+                bio: newAdmin.bio,
+                image: newAdmin.image,
                 password: newAdmin.password,
                 token: generateToken(newAdmin._id)
             })
@@ -75,6 +77,48 @@ const adminController =  {
         else {
             res.status(400)
             throw new Error('Invalid credentials')
+        }
+    }),
+
+    getAdmin: asyncHandler(async (req, res) => {
+        const adminId = req.params.adminId;
+
+        const admin = await Admin.findById(adminId);
+
+        if(admin) {
+            res.status(200).json(admin);
+        }
+        else {
+            res.status(404)
+            throw new Error('Author not found:', error)
+        }
+    }),
+
+    updateAdmin: asyncHandler(async (req, res) => {
+        const adminId = req.params.adminId;
+
+        const admin = await Admin.findByIdAndUpdate(adminId, req.body, {new: true});
+
+        if(admin) {
+            res.status(200).json(admin)
+        
+        } else {
+            res.status(404)
+            throw new Error('Author not found:', error);
+        }
+    }),
+
+    deleteAdmin: asyncHandler(async (req, res) => {
+        const adminId = req.params.adminId;
+
+        const admin = await Admin.findByIdAndDelete(adminId);
+
+        if(admin) {
+            res.status(200).json('Admin deleted successfully')
+        
+        } else {
+            res.status(404)
+            throw new Error('Admin not found:', error);
         }
     }),
 

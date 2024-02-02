@@ -85,3 +85,22 @@ padding: 0;
 .activebtn {
   color: #fc3c1a;
 }
+
+@keyframes scaleAndColor {
+  0% {
+    font-size: 0.5rem;
+    color: #ff4500; /* Initial color */
+  }
+  50% {
+    font-size: 1rem;
+    color: #ffa500; /* Middle color */
+  }
+  100% {
+    font-size: 1.5rem;
+    color: #ff8c00; /* Final color */
+  }
+}
+
+.animated-text {
+  animation: scaleAndColor 3s infinite;
+}

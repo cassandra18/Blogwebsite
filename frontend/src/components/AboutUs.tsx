@@ -18,7 +18,7 @@ const AboutUs: React.FC = () => {
             <h1 className="font-sans border-b-2  mt-10">Top Authors</h1>
             
             <div className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-8 md:mb-20">
-                <Link to="/blogs" className="p-5 mx-auto text-center shadow-lg my-10 bg-gray-200 hover:scale-110 transition ease-in-out rounded duration-200 cursor-pointer">
+                <Link to="/get-admin/65a51f9106a5e0ac01e62882" className="p-5 mx-auto text-center shadow-lg my-10 bg-gray-200 hover:scale-110 transition ease-in-out rounded duration-200 cursor-pointer">
                     <div>
                         <img src="https://i.pinimg.com/564x/09/56/95/095695a5803bd9619b17f6e284a45657.jpg" alt=""
                         className="h-12 mx-auto rounded-full md:mb-4"/>
@@ -30,7 +30,7 @@ const AboutUs: React.FC = () => {
                     <div className="text-gray-400 mb-3"><MdArticle className="inline-flex mr-2" />12 Articles Published</div>
                 </Link>
 
-                <Link to="/blogs" className="p-5 text-center mx-auto shadow-lg my-10 bg-gray-200 hover:scale-110 transition ease-in-out rounded duration-200 cursor-pointer">
+                <Link to="/get-admin/65a51f9106a5e0ac01e62882" className="p-5 text-center mx-auto shadow-lg my-10 bg-gray-200 hover:scale-110 transition ease-in-out rounded duration-200 cursor-pointer">
                     <div>
                         <img src="https://i.pinimg.com/564x/09/56/95/095695a5803bd9619b17f6e284a45657.jpg" alt=""
                         className="h-12 mx-auto  md:mb-4 mb-2 rounded-full "/>
@@ -43,7 +43,7 @@ const AboutUs: React.FC = () => {
 
                     <div className="text-gray-400"><MdArticle className="inline-flex mr-2" />12 Articles Published</div>
                 </Link>
-                <Link to="/blogs" className="p-5 text-center mx-auto shadow-lg my-10 bg-gray-200 hover:scale-110 transition ease-in-out rounded duration-200 cursor-pointer">
+                <Link to="/get-admin/65a51f9106a5e0ac01e62882" className="p-5 text-center mx-auto shadow-lg my-10 bg-gray-200 hover:scale-110 transition ease-in-out rounded duration-200 cursor-pointer">
                     <div>
                         <img src="https://i.pinimg.com/564x/09/56/95/095695a5803bd9619b17f6e284a45657.jpg" alt=""
                         className="h-12 mx-auto md:mb-4 rounded-full "/>
@@ -57,7 +57,7 @@ const AboutUs: React.FC = () => {
                     <div className="text-gray-400 mb-3"><MdArticle className="inline-flex mr-2" />12 Articles Published</div>
                 </Link>
 
-                <Link to="/blogs" className="p-5 text-center mx-auto shadow-lg my-10 bg-gray-200 hover:scale-110 transition ease-in-out rounded duration-200 cursor-pointer">
+                <Link to="/get-admin/65a51f9106a5e0ac01e62882" className="p-5 text-center mx-auto shadow-lg my-10 bg-gray-200 hover:scale-110 transition ease-in-out rounded duration-200 cursor-pointer">
                     <div>
                         <img src="https://i.pinimg.com/564x/09/56/95/095695a5803bd9619b17f6e284a45657.jpg" alt=""
                         className="h-12 mx-auto md:mb-4 rounded-full "/>

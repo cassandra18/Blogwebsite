@@ -9,6 +9,7 @@ import Contact from "./pages/contact";
 import HomePage from "./pages/homePage";
 import BlogPage from './pages/blogs.tsx'
 import SingleBlog from './components/SingleBlog.tsx'
+import SingleAuthor from './components/SingleAuthor.tsx'
 
 
 const router = createBrowserRouter([
@@ -40,7 +41,12 @@ const router = createBrowserRouter([
         path: '/post/:postId',
         element: <SingleBlog/>,
         loader: ({params}) => fetch(`http://localhost:3000/api/post/${params.postId}`)
-      }
+      },
+      {
+        path: '/get-admin/:adminId',
+        element: <SingleAuthor/>,
+        loader: ({params}) => fetch(`http://localhost:3000/api/admin/get-admin/${params.adminId}`)
+      },
     ]
   },
 ]);
