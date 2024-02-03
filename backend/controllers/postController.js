@@ -156,7 +156,11 @@ const postController = {
     }
 
 
-  })
+  }),
+
+  deletePost: asyncHandler ( async (req, res) => {
+    const postId = await Post.findByIdAndUpdate()
+  }),
 
 };
 
