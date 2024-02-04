@@ -95,6 +95,20 @@ const Header: React.FC = () => {
             <li key={path}>
               <NavLink onClick={ toggleMenu } to={path} className={({ isActive }) =>
                 isActive ? "active" : ""}>{link}</NavLink>
+                <Link to="/login">
+            <button
+              className="bg-orange-500 px-4 py-2
+           text-white
+            font-medium round
+           hover:bg-orange-500
+           hover:text-black
+            duration-200 hover:scale-110
+            transition ease-in-out
+            rounded"
+            >
+              Login
+            </button>
+            </Link>
             </li>
           ))}
         </ul>
