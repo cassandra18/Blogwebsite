@@ -6,6 +6,7 @@ const asyncHandler = require("express-async-handler");
 
 const Post = require("../models/blogPostSchema");
 const { response } = require('express');
+const { findByIdAndDelete } = require('../models/commentsSchema');
 
 
  // configure the multer storage engine. It specifies that uploaded files should be stored in 'diskStorage' disk. 
@@ -159,8 +160,25 @@ const postController = {
   }),
 
   deletePost: asyncHandler ( async (req, res) => {
-    const postId = await Post.findByIdAndUpdate()
+    const postId = req.params.postId;
+
+    try {
+    const deletedPost = await Post.findByIdAndDelete(postId);
+
+    if(!deletedPost) {
+      return res.status(404).json({ message: 'Post not found'});
+    } else {
+      
+      res.status(200).json({ message: 'Post deleted successfully' });
+    }
+
+  } catch (error) {
+
+    console.error('Error deleting post:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
   }),
+
 
 };
 
